@@ -162,8 +162,9 @@
     if (!preview && !copyFeedback) button.setAttribute("aria-label", message);
   }));
 
-  // Public profiles are intentionally held in memory only for this demo.
-  // No profile or private recipient data is uploaded or persisted by this static site.
+  
+  // Public profiles will be loaded from Supabase.
+  // Private recipient details must never be saved to the public profiles table.
   const publicProfiles = [];
   const profileList = document.getElementById("profileList");
   const profileSearch = document.getElementById("profileSearch");
