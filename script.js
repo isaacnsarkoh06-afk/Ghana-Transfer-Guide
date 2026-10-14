@@ -1,6 +1,15 @@
 (() => {
   "use strict";
 
+  // Supabase connection configuration
+  const SUPABASE_URL = "https://nbmmfgiqtelbiguconql.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_AW2R6wdj8IJrA_wRLKeBVg_oIs3szP4";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
   // This directory is deliberately honest: it guides visitors to official services,
   // but cannot check live country routes or initiate/confirm a transfer.
   const providers = [
