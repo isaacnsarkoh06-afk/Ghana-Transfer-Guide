@@ -2,8 +2,8 @@
   "use strict";
 
   // Supabase connection configuration
-  const SUPABASE_URL = "https://nbmmfgiqtelbiguconql.supabase.co/rest/v1/";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_AW2R6wdj8IJrA_wRLKeBVg_oIs3szP4";
+  const SUPABASE_URL = "https://nslcijqfkiubzpkhjveb.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dGTtyItlTSZMxTG0Tr2hmg_iN7E3qXA";
 
   const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
