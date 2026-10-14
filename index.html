@@ -40,6 +40,64 @@
 <article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Select your country</h3><p>Choose the country from which you want to send money.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">↗</div><h3>Choose a transfer service</h3><p>Review the options and check whether MTN MoMo is supported on your route.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">▤</div><h3>Enter recipient details</h3><p>Follow the provider's official instructions and carefully enter recipient details.</p></article><article class="step-card"><span class="step-number">04</span><div class="step-icon">✓</div><h3>Review and send</h3><p>Check fees, exchange rate, limits, delivery estimate, and recipient details before confirming.</p></article></div></div></section>
 <section class="section recipient-section directory-section" id="public-directory"><div class="container"><div class="section-heading"><div><span class="eyebrow">PUBLIC RECIPIENT DIRECTORY</span><h2>Find a recipient in Ghana.</h2></div><p>Only profiles added with explicit consent should be displayed. Public listings never show mobile-money numbers, bank details, email addresses, or private contact information.</p></div><div class="directory-tools"><div class="field-group"><label for="profileSearch">Search profile or region</label><input id="profileSearch" type="search" placeholder="Search by display name or region" autocomplete="off"></div><div class="field-group"><label for="profileRegion">Filter by region</label><select id="profileRegion"><option value="">All regions</option><option>Greater Accra</option><option>Ashanti</option><option>Central</option><option>Eastern</option><option>Western</option><option>Western North</option><option>Volta</option><option>Oti</option><option>Northern</option><option>Savannah</option><option>North East</option><option>Upper East</option><option>Upper West</option><option>Bono</option><option>Bono East</option><option>Ahafo</option></select></div><div class="field-group"><label for="profileMethod">Receiving method</label><select id="profileMethod"><option value="">All methods</option><option>MTN Mobile Money</option><option>Telecel Cash</option><option>AT Money</option><option>Bank deposit</option><option>Cash pickup</option></select></div></div><div id="profileList" class="profile-grid" aria-live="polite"><div class="empty-state"><span class="empty-icon">⌕</span><h3>No public profiles yet</h3><p>Be the first to register a profile. Your public profile will not include your phone number or financial account details.</p><a class="button button-primary" href="#register">Register a profile</a></div></div><p class="security-note"><strong>Privacy note:</strong> This version is a front-end demonstration. Profiles created here exist only in this browser session and are not uploaded or saved to a shared directory. A secure backend is required before real public registration can go live.</p></div></section>
 <section class="section private-section" id="private-entry"><div class="container two-panel-layout"><div class="section-intro"><span class="eyebrow">PRIVATE RECIPIENT ENTRY</span><h2>Sending to someone not listed?</h2><p>Enter their details locally to prepare a checklist. This form does not send, save, or publish the information. For your safety, enter payment details only on the remittance provider's official website or app.</p><div class="notice-box"><span aria-hidden="true">!</span><p><b>Never enter a PIN or OTP.</b> The tool only needs basic recipient details for your own reference. It does not process payments.</p></div></div><form id="privateRecipientForm" class="form-card"><div class="field-group"><label for="privateName">Recipient name</label><input id="privateName" name="privateName" type="text" maxlength="80" autocomplete="off" placeholder="Name as registered with provider" required></div><div class="field-row"><div class="field-group"><label for="privateRegion">Region</label><select id="privateRegion" name="privateRegion"><option value="">Select region (optional)</option><option>Greater Accra</option><option>Ashanti</option><option>Central</option><option>Eastern</option><option>Western</option><option>Western North</option><option>Volta</option><option>Oti</option><option>Northern</option><option>Savannah</option><option>North East</option><option>Upper East</option><option>Upper West</option><option>Bono</option><option>Bono East</option><option>Ahafo</option></select></div><div class="field-group"><label for="privateMethod">Receiving method</label><select id="privateMethod" name="privateMethod" required><option value="">Select method</option><option>MTN Mobile Money</option><option>Telecel Cash</option><option>AT Money</option><option>Bank deposit</option><option>Cash pickup</option></select></div></div><div class="field-group"><label for="privatePhone">Recipient phone number (optional)</label><input id="privatePhone" name="privatePhone" type="tel" inputmode="tel" autocomplete="off" maxlength="25" placeholder="Enter only if needed for your checklist"><small>Kept only in this open page; never add it to a public profile.</small></div><div class="form-actions"><button class="button button-primary" type="submit">Prepare private checklist</button><button class="button button-secondary" id="clearPrivate" type="button">Clear details</button></div><div id="privateResult" class="form-result" role="status" aria-live="polite" hidden></div></form></div></section>
+  
+<div class="container">
+  <div class="form-card account-card">
+    <div class="form-title">
+      <h3>Recipient account</h3>
+      <p>Create an account or sign in to manage your public profile.</p>
+    </div>
+
+    <form id="accountForm">
+      <div class="field-group">
+        <label for="accountEmail">Email address</label>
+        <input
+          id="accountEmail"
+          name="accountEmail"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          required
+        >
+      </div>
+
+      <div class="field-group">
+        <label for="accountPassword">Password</label>
+        <input
+          id="accountPassword"
+          name="accountPassword"
+          type="password"
+          autocomplete="current-password"
+          minlength="8"
+          placeholder="At least 8 characters"
+          required
+        >
+      </div>
+
+      <div class="field-row">
+        <button class="button button-primary" id="signUpButton" type="button">
+          Create account
+        </button>
+
+        <button class="button button-secondary" id="signInButton" type="button">
+          Sign in
+        </button>
+      </div>
+
+      <button class="button button-secondary" id="signOutButton" type="button" hidden>
+        Sign out
+      </button>
+
+      <p id="accountStatus" class="form-result" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="fine-print">
+      Use an email address you control. Never share your password, verification
+      codes, mobile money PIN, or one-time passwords with anyone.
+    </p>
+  </div>
+</div>
+
 <section class="section register-section" id="register"><div class="container two-panel-layout"><div class="section-intro"><span class="eyebrow">VOLUNTARY REGISTRATION</span><h2>Let people find your public profile.</h2><p>Recipients can opt in to a public listing that shows a display name, region, preferred receiving method, and a short note. Keep phone numbers, wallet numbers, bank details, and private contact information off public profiles.</p><ul class="privacy-list"><li>Choose a display name rather than publishing sensitive information.</li><li>Use only details you have permission to share.</li><li>You can remove your profile from this demo by refreshing the page.</li></ul></div><form id="registrationForm" class="form-card"><div class="form-title"><h3>Create a public profile</h3><p>All fields marked required must be completed.</p></div><div class="field-group"><label for="displayName">Public display name</label><input id="displayName" name="displayName" type="text" maxlength="50" autocomplete="nickname" placeholder="e.g. Ama K." required></div><div class="field-row"><div class="field-group"><label for="registerRegion">Region</label><select id="registerRegion" name="registerRegion" required><option value="">Choose region</option><option>Greater Accra</option><option>Ashanti</option><option>Central</option><option>Eastern</option><option>Western</option><option>Western North</option><option>Volta</option><option>Oti</option><option>Northern</option><option>Savannah</option><option>North East</option><option>Upper East</option><option>Upper West</option><option>Bono</option><option>Bono East</option><option>Ahafo</option></select></div><div class="field-group"><label for="registerMethod">Preferred receiving method</label><select id="registerMethod" name="registerMethod" required><option value="">Choose method</option><option>MTN Mobile Money</option><option>Telecel Cash</option><option>AT Money</option><option>Bank deposit</option><option>Cash pickup</option></select></div></div><div class="field-group"><label for="profileNote">Short public note (optional)</label><textarea id="profileNote" name="profileNote" rows="3" maxlength="160" placeholder="Add a brief note. Do not include phone numbers, bank details, or sensitive information."></textarea></div><label class="consent-check"><input id="publicConsent" type="checkbox" required><span>I consent to displaying this profile's name, region, receiving method, and note publicly. I understand this demo does not submit my profile to a real server.</span></label><button class="button button-primary" type="submit">Preview public profile</button><div id="registrationStatus" class="form-result" role="status" aria-live="polite" hidden></div><p class="fine-print">Demo only: do not use this form to submit real personal or financial data. Live registration requires secure storage, profile removal, abuse reporting, and consent records.</p></form></div></section>
 <section class="section currency-section"><div class="container currency-layout"><div><span class="eyebrow">CURRENCY INFORMATION</span><h2>Know the rate before you send.</h2><p>Transfers may involve USD, GBP, EUR, CAD, AUD, and GHS. The provider sets the exchange rate and fees for your transaction. Review the quote shown during checkout before confirming.</p></div><div class="currency-list"><div><span>USD</span><b>US dollar</b></div><div><span>GBP</span><b>British pound</b></div><div><span>EUR</span><b>Euro</b></div><div><span>CAD</span><b>Canadian dollar</b></div><div><span>AUD</span><b>Australian dollar</b></div><div><span>GHS</span><b>Ghanaian cedi</b></div><p>No live exchange rates are displayed. Check the provider's current quote.</p></div></div></section>
 <section class="section faq-section" id="faq"><div class="container faq-layout"><div class="section-heading faq-heading"><div><span class="eyebrow">HELP CENTRE</span><h2>Frequently asked questions</h2></div><p>Important details for sending money internationally.</p></div><div class="accordion">
