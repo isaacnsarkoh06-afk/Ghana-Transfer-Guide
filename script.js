@@ -6,8 +6,9 @@
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dGTtyItlTSZMxTG0Tr2hmg_iN7E3qXA";
 
   const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
   );
 
   // This directory is deliberately honest: it guides visitors to official services,
