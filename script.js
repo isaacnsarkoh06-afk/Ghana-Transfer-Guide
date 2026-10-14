@@ -179,6 +179,130 @@
   const profileSearch = document.getElementById("profileSearch");
   const profileRegion = document.getElementById("profileRegion");
   const profileMethod = document.getElementById("profileMethod");
+  
+  // Supabase account authentication
+  const accountEmailInput = document.getElementById("accountEmail");
+  const accountPasswordInput = document.getElementById("accountPassword");
+  const accountStatus = document.getElementById("accountStatus");
+  const signUpButton = document.getElementById("signUpButton");
+  const signInButton = document.getElementById("signInButton");
+  const signOutButton = document.getElementById("signOutButton");
+
+  function showAccountStatus(message) {
+    accountStatus.textContent = message;
+  }
+
+  function updateAccountButtons(session) {
+    const signedIn = Boolean(session);
+
+    signUpButton.hidden = signedIn;
+    signInButton.hidden = signedIn;
+    signOutButton.hidden = !signedIn;
+
+    accountEmailInput.disabled = signedIn;
+    accountPasswordInput.disabled = signedIn;
+
+    showAccountStatus(
+      signedIn
+        ? "You are signed in. You can now manage your account."
+        : "Sign in or create an account to continue."
+    );
+  }
+
+  signUpButton.addEventListener("click", async () => {
+    const email = accountEmailInput.value.trim();
+    const password = accountPasswordInput.value;
+
+    if (!email || password.length < 8) {
+      showAccountStatus("Enter a valid email and a password of at least 8 characters.");
+      return;
+    }
+
+    signUpButton.disabled = true;
+    showAccountStatus("Creating your account...");
+
+    try {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
+      if (data.session) {
+        updateAccountButtons(data.session);
+      } else {
+        showAccountStatus(
+          "Account request received. Check your email for a confirmation link before signing in."
+        );
+      }
+    } catch (error) {
+      showAccountStatus(error.message || "Could not create your account.");
+    } finally {
+      signUpButton.disabled = false;
+    }
+  });
+
+  signInButton.addEventListener("click", async () => {
+    const email = accountEmailInput.value.trim();
+    const password = accountPasswordInput.value;
+
+    if (!email || !password) {
+      showAccountStatus("Enter your email and password.");
+      return;
+    }
+
+    signInButton.disabled = true;
+    showAccountStatus("Signing in...");
+
+    try {
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) throw error;
+
+      updateAccountButtons(data.session);
+    } catch (error) {
+      showAccountStatus(error.message || "Could not sign in.");
+    } finally {
+      signInButton.disabled = false;
+    }
+  });
+
+  signOutButton.addEventListener("click", async () => {
+    signOutButton.disabled = true;
+    showAccountStatus("Signing out...");
+
+    try {
+      const { error } = await supabaseClient.auth.signOut();
+
+      if (error) throw error;
+
+      updateAccountButtons(null);
+      accountPasswordInput.value = "";
+    } catch (error) {
+      showAccountStatus(error.message || "Could not sign out.");
+    } finally {
+      signOutButton.disabled = false;
+    }
+  });
+
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      showAccountStatus("Could not check your sign-in status. Please refresh.");
+      return;
+    }
+
+    updateAccountButtons(data.session);
+  });
+
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+    updateAccountButtons(session);
+  });
+
   const registrationForm = document.getElementById("registrationForm");
   const registrationStatus = document.getElementById("registrationStatus");
   const privateForm = document.getElementById("privateRecipientForm");
